@@ -13,7 +13,7 @@ export const SettingsIcon = ({width = 24, height = 24, stroke = '#F3F7FF'}) => {
     );
 }
 
-export const ArrowRight = ({width = 16, height = 16, stroke = '#333333'}) => {
+export const ArrowRightIcon = ({width = 16, height = 16, stroke = '#333333'}) => {
     return (
         <Svg width={width} height={height} viewBox="0 0 16 16" fill="none">
             <Path id="Vector 140" d="M5 1L10.3306 7.21905C10.7158 7.66844 10.7158 8.33156 10.3306 8.78095L5 15"

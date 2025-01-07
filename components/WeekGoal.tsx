@@ -1,6 +1,6 @@
 import React from "react";
 import {StyleSheet, Text, View} from "react-native";
-import {ArrowRight} from "@/components/Icons";
+import {ArrowRightIcon} from "@/components/Icons";
 
 const WeekGoal = () => {
     return (
@@ -10,7 +10,7 @@ const WeekGoal = () => {
                     <Text style={styles.title}>View goal</Text>
                     <Text style={styles.goal}>50 km</Text>
                 </View>
-                <ArrowRight/>
+                <ArrowRightIcon />
             </View>
             <View style={styles.goalTrackerContainer}>
                 <View style={styles.goalTrackerLegends}>

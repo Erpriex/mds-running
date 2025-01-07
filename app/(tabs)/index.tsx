@@ -4,6 +4,7 @@ import Header from "@/components/Header";
 import ProfilePicture from "@/components/ProfilePicture";
 import {SettingsIcon} from "@/components/Icons";
 import WeekGoal from "@/components/WeekGoal";
+import RunningLauncherButton from "@/components/RunningLauncherButton";
 
 export default function HomeScreen() {
     return (
@@ -23,7 +24,7 @@ export default function HomeScreen() {
             </Header>
             <View style={styles.content}>
                 <WeekGoal />
-                <Text>Test</Text>
+                <RunningLauncherButton />
             </View>
         </SafeAreaView>
     );
