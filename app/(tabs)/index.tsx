@@ -3,6 +3,7 @@ import {StyleSheet, SafeAreaView, Text, View} from 'react-native';
 import Header from "@/components/Header";
 import ProfilePicture from "@/components/ProfilePicture";
 import {SettingsIcon} from "@/components/Icons";
+import WeekGoal from "@/components/WeekGoal";
 
 export default function HomeScreen() {
     return (
@@ -20,6 +21,10 @@ export default function HomeScreen() {
                     <SettingsIcon />
                 </View>
             </Header>
+            <View style={styles.content}>
+                <WeekGoal />
+                <Text>Test</Text>
+            </View>
         </SafeAreaView>
     );
 }
@@ -55,5 +60,10 @@ const styles = StyleSheet.create({
         fontFamily: 'Inter-Light',
         fontSize: 11,
         color: '#F3F7FF',
+    },
+    content: {
+        flex: 1,
+        marginTop: 250,
+        paddingHorizontal: 24,
     }
 });

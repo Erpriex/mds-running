@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#5D63D1',
         borderBottomLeftRadius: 16,
         borderBottomRightRadius: 16,
-        height: 270,
+        height: 250,
     },
     headerContent: {
         marginTop: '15%',
