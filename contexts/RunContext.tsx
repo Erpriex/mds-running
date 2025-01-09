@@ -1,25 +1,29 @@
 import React, {createContext, useState, useContext} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {Pedometer} from 'expo-sensors';
+import {CoordinateType} from "@/app/(tabs)/map";
 
 type RunContextType = {
     timeElapsed: number;
     steps: number;
     distance: number;
     calories: number;
-    isRunning: boolean; // Indique si une course est en cours
+    isRunning: boolean;
     startRun: () => void;
     stopRun: () => void;
-    resetRun: () => void; // Réinitialise les valeurs de la course
+    resetRun: () => void;
     saveRun: (runData: RunDataType) => Promise<void>;
+    triggerRefresh: () => void;
+    shouldRefresh: boolean;
 };
 
-type RunDataType = {
+export type RunDataType = {
     timeElapsed: number;
     steps: number;
     distance: number;
     calories: number;
     date: string;
+    routeCoordinates: CoordinateType[];
 };
 
 const RunContext = createContext<RunContextType | null>(null);
@@ -32,19 +36,18 @@ export const RunProvider = ({children}: { children: React.ReactNode }) => {
     const [isRunning, setIsRunning] = useState(false);
     const [intervalId, setIntervalId] = useState<NodeJS.Timeout | null>(null);
     const [pedometerSubscription, setPedometerSubscription] = useState<any>(null);
+    const [shouldRefresh, setShouldRefresh] = useState(false);
 
     const startRun = () => {
         if (isRunning || intervalId) return;
 
         setIsRunning(true);
 
-        // Démarre le chronomètre
         const id = setInterval(() => {
             setTimeElapsed((prev) => prev + 1);
         }, 1000);
         setIntervalId(id);
 
-        // Démarre le suivi des pas
         const subscription = Pedometer.watchStepCount((result) => {
             if (result.steps) {
                 setSteps(result.steps);
@@ -92,6 +95,8 @@ export const RunProvider = ({children}: { children: React.ReactNode }) => {
         }
     };
 
+    const triggerRefresh = () => setShouldRefresh((prev) => !prev);
+
     return (
         <RunContext.Provider
             value={{
@@ -104,6 +109,8 @@ export const RunProvider = ({children}: { children: React.ReactNode }) => {
                 stopRun,
                 resetRun,
                 saveRun,
+                triggerRefresh,
+                shouldRefresh,
             }}
         >
             {children}

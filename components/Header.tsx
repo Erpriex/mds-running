@@ -21,10 +21,10 @@ const styles = StyleSheet.create({
         backgroundColor: '#5D63D1',
         borderBottomLeftRadius: 16,
         borderBottomRightRadius: 16,
-        height: 250,
+        height: '25%',
     },
     headerContent: {
-        marginTop: '15%',
+        marginTop: '5%',
         marginHorizontal: 24,
     },
 });

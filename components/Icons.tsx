@@ -1,4 +1,4 @@
-import Svg, {Path, Rect} from "react-native-svg";
+import Svg, {Circle, Path, Rect} from "react-native-svg";
 
 export const SettingsIcon = ({width = 24, height = 24, stroke = '#F3F7FF'}) => {
     return (
@@ -49,6 +49,16 @@ export const RunPauseIcon = ({width = 40, height = 40, stroke = '#5D63D1'}) => {
             <Rect id="Rectangle 31" width="40" height="40" rx="12" fill={stroke}/>
             <Rect id="Rectangle 26" x="23.5" y="12" width="2.5" height="16" rx="1.25" fill="white"/>
             <Rect id="Rectangle 27" x="14" y="12" width="2.5" height="16" rx="1.25" fill="white"/>
+        </Svg>
+    )
+}
+
+export const RunPointStartMapIcon = ({width = 20, height = 20, stroke = '#333333'}) => {
+    return (
+        <Svg width={width} height={height} viewBox="0 0 20 20" fill="none">
+            <Circle id="Ellipse 1" cx="10.1436" cy="10.1438" r="2.17709" fill={stroke}/>
+            <Circle id="Ellipse 2" cx="10.1438" cy="10.1438" r="6.9667" stroke={stroke}
+                    strokeWidth="4.35419"/>
         </Svg>
     )
 }

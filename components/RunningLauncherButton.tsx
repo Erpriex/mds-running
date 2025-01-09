@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
         flex: 1,
         borderRadius: 30,
         backgroundColor: '#5D63D1',
-        maxHeight: 64,
+        height: 64,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
