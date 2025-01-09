@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import {StyleSheet, View, Text, TouchableOpacity, SafeAreaView} from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, SafeAreaView, Image } from 'react-native';
 import MapView from 'react-native-maps';
 import * as Location from 'expo-location';
 import { useRun } from '@/contexts/RunContext';
 import { useRouter } from 'expo-router';
-import {ArrowLeftReturnIcon} from "@/components/Icons";
-import GpsIndicator from "@/components/GpsIndicator";
+import { ArrowLeftReturnIcon, RunPauseIcon } from '@/components/Icons';
+import GpsIndicator from '@/components/GpsIndicator';
 
 type LocationType = {
     latitude: number;
@@ -18,7 +18,7 @@ const MapScreen = () => {
     const [location, setLocation] = useState<LocationType | null>(null);
     const [errorMsg, setErrorMsg] = useState<string | null>(null);
     const router = useRouter();
-    const { timeElapsed, steps, distance, calories, stopRun, saveRun, resetRun } = useRun();
+    const { timeElapsed, steps, distance, calories, stopRun, resetRun } = useRun();
 
     useEffect(() => {
         (async () => {
@@ -48,13 +48,6 @@ const MapScreen = () => {
 
     const handleStop = () => {
         stopRun();
-        /*saveRun({
-            timeElapsed,
-            steps,
-            distance,
-            calories,
-            date: new Date().toISOString(), // Date de fin de la course
-        }).then(r => {});*/
         resetRun();
         router.push('/');
     };
@@ -95,14 +88,48 @@ const MapScreen = () => {
                 <GpsIndicator />
             </View>
             <View style={styles.infoContainer}>
-                <Text>Temps : {formatTime(timeElapsed)}</Text>
-                <Text>Pas : {steps}</Text>
-                <Text>Distance : {(distance / 1000).toFixed(2)} km</Text>
-                <Text>Calories : {calories.toFixed(1)} kcal</Text>
+                <View style={styles.infoContainerHeader}>
+                    <View>
+                        <Text style={styles.runningTimeTitle}>Running time</Text>
+                        <Text style={styles.runningTimeValue}>{formatTime(timeElapsed)}</Text>
+                    </View>
+                    <TouchableOpacity onPress={handleStop}>
+                        <RunPauseIcon />
+                    </TouchableOpacity>
+                </View>
+                <View style={styles.infoContentContainer}>
+                    <View style={styles.infoCellContainer}>
+                        <Image
+                            style={styles.infoCellImg}
+                            source={require('@/assets/images/runner.png')}
+                        />
+                        <View>
+                            <Text style={styles.infoCellValue}>{(distance / 1000).toFixed(2)}</Text>
+                            <Text style={styles.infoCellUnit}>km</Text>
+                        </View>
+                    </View>
+                    <View style={styles.infoCellContainer}>
+                        <Image
+                            style={styles.infoCellImg}
+                            source={require('@/assets/images/fire.png')}
+                        />
+                        <View>
+                            <Text style={styles.infoCellValue}>{calories.toFixed(1)}</Text>
+                            <Text style={styles.infoCellUnit}>kcal</Text>
+                        </View>
+                    </View>
+                    <View style={styles.infoCellContainer}>
+                        <Image
+                            style={styles.infoCellImg}
+                            source={require('@/assets/images/lightning.png')}
+                        />
+                        <View>
+                            <Text style={styles.infoCellValue}>{steps}</Text>
+                            <Text style={styles.infoCellUnit}>pas</Text>
+                        </View>
+                    </View>
+                </View>
             </View>
-            <TouchableOpacity style={styles.stopButton} onPress={handleStop}>
-                <Text style={styles.stopButtonText}>Arrêter la course</Text>
-            </TouchableOpacity>
         </SafeAreaView>
     );
 };
@@ -115,43 +142,74 @@ const styles = StyleSheet.create({
         ...StyleSheet.absoluteFillObject,
     },
     headerContent: {
-        display: 'flex',
+        position: 'absolute',
+        top: 60, // Ajuste légèrement sous la barre de statut
+        width: '100%',
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        marginTop: 64,
         paddingHorizontal: 24,
+        zIndex: 10,
     },
     screenTitle: {
         fontFamily: 'Inter-SemiBold',
         fontSize: 14,
-        color: '#333',
+        color: 'white',
     },
     infoContainer: {
         position: 'absolute',
         bottom: 100,
-        left: 20,
+        width: '90%',
+        alignSelf: 'center',
         backgroundColor: '#FFF',
-        padding: 10,
-        borderRadius: 10,
+        padding: 20,
+        borderRadius: 16,
         elevation: 5,
     },
-    stopButton: {
-        position: 'absolute',
-        bottom: 20,
-        left: '50%',
-        transform: [{ translateX: -100 }],
-        width: 200,
-        height: 50,
-        backgroundColor: '#FF3B30',
-        borderRadius: 25,
-        justifyContent: 'center',
+    infoContainerHeader: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+    },
+    runningTimeTitle: {
+        fontFamily: 'Inter-Regular',
+        fontSize: 14,
+        color: '#333',
+    },
+    runningTimeValue: {
+        fontFamily: 'Inter-SemiBold',
+        fontSize: 28,
+        color: '#333',
+    },
+    infoContentContainer: {
+        flexDirection: 'row',
+        flex: 1,
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        borderRadius: 8,
+        backgroundColor: '#F3F7FF',
+        paddingVertical: 4,
+        paddingHorizontal: 8,
+        marginTop: 13,
+    },
+    infoCellContainer: {
+        flexDirection: 'row',
+        gap: 12,
+        height: 60,
         alignItems: 'center',
     },
-    stopButtonText: {
-        color: '#FFF',
-        fontSize: 16,
-        fontWeight: 'bold',
+    infoCellImg: {
+        width: 30,
+        height: 30,
+    },
+    infoCellValue: {
+        fontFamily: 'Inter-SemiBold',
+        fontSize: 17,
+        color: '#333',
+    },
+    infoCellUnit: {
+        fontFamily: 'Inter-Regular',
+        fontSize: 11,
+        color: '#333',
     },
 });
 

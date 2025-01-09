@@ -42,3 +42,13 @@ export const GpsStatusIcon = ({width = 12, height = 13, stroke = '#78D868'}) => 
         </Svg>
     )
 }
+
+export const RunPauseIcon = ({width = 40, height = 40, stroke = '#5D63D1'}) => {
+    return (
+        <Svg width={width} height={height} viewBox="0 0 40 40" fill="none">
+            <Rect id="Rectangle 31" width="40" height="40" rx="12" fill={stroke}/>
+            <Rect id="Rectangle 26" x="23.5" y="12" width="2.5" height="16" rx="1.25" fill="white"/>
+            <Rect id="Rectangle 27" x="14" y="12" width="2.5" height="16" rx="1.25" fill="white"/>
+        </Svg>
+    )
+}
