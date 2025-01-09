@@ -1,4 +1,4 @@
-import Svg, {Path} from "react-native-svg";
+import Svg, {Path, Rect} from "react-native-svg";
 
 export const SettingsIcon = ({width = 24, height = 24, stroke = '#F3F7FF'}) => {
     return (
@@ -18,6 +18,27 @@ export const ArrowRightIcon = ({width = 16, height = 16, stroke = '#333333'}) =>
         <Svg width={width} height={height} viewBox="0 0 16 16" fill="none">
             <Path id="Vector 140" d="M5 1L10.3306 7.21905C10.7158 7.66844 10.7158 8.33156 10.3306 8.78095L5 15"
                   stroke={stroke} strokeWidth="1.5" strokeLinecap="round"/>
+        </Svg>
+    )
+}
+
+export const ArrowLeftReturnIcon = ({width = 32, height = 32, stroke = '#333333'}) => {
+    return (
+        <Svg width={width} height={height} viewBox="0 0 32 32" fill="none">
+            <Rect id="Rectangle 16" width="32" height="32" rx="10" fill="white"/>
+            <Path id="Vector"
+                  d="M12.0024 16.0013C12.002 15.7676 12.0833 15.5412 12.2324 15.3613L17.2324 9.36125C17.4021 9.15704 17.6461 9.02861 17.9105 9.00423C18.1749 8.97985 18.4382 9.06151 18.6424 9.23125C18.8466 9.40099 18.9751 9.6449 18.9994 9.90933C19.0238 10.1738 18.9421 10.437 18.7724 10.6413L14.2924 16.0013L18.6124 21.3613C18.6955 21.4635 18.7575 21.5812 18.7949 21.7076C18.8324 21.8339 18.8445 21.9664 18.8305 22.0974C18.8166 22.2285 18.7769 22.3554 18.7137 22.4711C18.6505 22.5867 18.5651 22.6887 18.4624 22.7713C18.3596 22.8628 18.239 22.9322 18.1081 22.975C17.9772 23.0178 17.8389 23.0331 17.7019 23.0199C17.5648 23.0068 17.4319 22.9655 17.3116 22.8986C17.1912 22.8317 17.086 22.7407 17.0024 22.6313L12.1724 16.6313C12.0469 16.4462 11.987 16.2244 12.0024 16.0013Z"
+                  fill={stroke}/>
+        </Svg>
+    )
+}
+
+export const GpsStatusIcon = ({width = 12, height = 13, stroke = '#78D868'}) => {
+    return (
+        <Svg width={width} height={height} viewBox="0 0 12 13" fill="none">
+            <Rect id="Rectangle 36" x="1" y="7.5" width="2" height="5" rx="1" fill={stroke}/>
+            <Rect id="Rectangle 37" x="5" y="4.5" width="2" height="8" rx="1" fill={stroke}/>
+            <Rect id="Rectangle 38" x="9" y="1.5" width="2" height="11" rx="1" fill={stroke}/>
         </Svg>
     )
 }
